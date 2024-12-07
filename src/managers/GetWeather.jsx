@@ -3,7 +3,7 @@ import axios from "axios";
 async function GetWeather(latitude, longitude) {
   try {
     const response = await axios.post(
-      "https://toxicapi.onrender.com/weather",
+      import.meta.env.VITE_API_URL,
       {
         latitude: latitude,
         longitude: longitude,

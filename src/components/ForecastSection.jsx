@@ -14,13 +14,11 @@ function MainWeather(props) {
   }
 
   return (
-    <div className="container">
-      <div className="forecast-section">
-        <h1>Forecast</h1>
-        <div className="forecast">
-          <CurrentWeather current={currentWeather} />
-          <ForecastWeather forecast={forecastWeather} />
-        </div>
+    <div className="forecast-section">
+      <h1>Forecast</h1>
+      <div className="forecast">
+        <CurrentWeather current={currentWeather} />
+        <ForecastWeather forecast={forecastWeather} />
       </div>
     </div>
   );

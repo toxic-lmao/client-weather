@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import GetLocation from "./managers/GetLocation";
 import GetWeather from "./managers/GetWeather";
-import MainWeather from "./components/MainWeather";
+import ForecastSection from "./components/ForecastSection";
+import ChanceOfRain from "./components/ChanceOfRain";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -35,7 +36,10 @@ function App() {
       {loading ? (
         <p>Loading weather...</p>
       ) : weatherData ? (
-        <MainWeather weatherData={weatherData} />
+        <div className="container">
+          <ForecastSection weatherData={weatherData} />
+          <ChanceOfRain chanceOfRain={weatherData.forecastWeather.list} />
+        </div>
       ) : (
         <p>Unable to fetch weather data.</p>
       )}
