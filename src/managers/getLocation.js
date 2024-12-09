@@ -1,4 +1,4 @@
-function GetLocation() {
+function getLocation() {
   return new Promise((resolve) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -21,4 +21,4 @@ function GetLocation() {
   });
 }
 
-export default GetLocation;
+export default getLocation;

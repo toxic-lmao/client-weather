@@ -1,6 +1,6 @@
 import axios from "axios";
 
-async function GetWeather(latitude, longitude) {
+async function getWeather(latitude, longitude) {
   try {
     const response = await axios.post(
       import.meta.env.VITE_API_URL,
@@ -17,4 +17,4 @@ async function GetWeather(latitude, longitude) {
   }
 }
 
-export default GetWeather;
+export default getWeather;

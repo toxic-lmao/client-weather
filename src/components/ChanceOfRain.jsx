@@ -26,7 +26,7 @@ const ChanceOfRain = (props) => {
     datasets: [
       {
         data: props.chanceOfRain.slice(0, 6).map((item) => item.pop),
-        backgroundColor: "#4fc3f7",
+        backgroundColor: "#9dccf3",
         borderRadius: 5,
         barPercentage: 0.2, // Adjust bar width for clarity
       },
