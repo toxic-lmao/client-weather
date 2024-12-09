@@ -3,6 +3,7 @@ import getLocation from "./managers/getLocation";
 import getWeather from "./managers/getWeather";
 import ForecastSection from "./components/ForecastSection";
 import ChanceOfRain from "./components/ChanceOfRain";
+import Map from "./components/Map";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -39,6 +40,7 @@ function App() {
         <div className="container">
           <ForecastSection weatherData={weatherData} />
           <ChanceOfRain chanceOfRain={weatherData.forecastWeather.list} />
+          <Map />
         </div>
       ) : (
         <p>Unable to fetch weather data.</p>

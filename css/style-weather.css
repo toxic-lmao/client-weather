@@ -117,6 +117,13 @@ body {
   margin-left: -16px;
 }
 
+.map-container {
+  height: 100%;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
 @media (max-width: 1366px) {
   .forecast {
     grid-template-columns: 2fr repeat(5, 1fr);
