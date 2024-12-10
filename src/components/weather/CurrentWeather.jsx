@@ -19,8 +19,8 @@ function CurrentWeather(props) {
         </div>
         <div className="apparent-weather">
           <h3>{props.current.name}</h3>
-          <h4>Feels like: {props.current.main.feels_like}°</h4>
           <h4>{props.current.weather[0].description}</h4>
+          <h4>Feels like: {props.current.main.feels_like}°</h4>
         </div>
       </div>
     </div>

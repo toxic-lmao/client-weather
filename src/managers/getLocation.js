@@ -3,20 +3,17 @@ function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const { latitude, longitude } = position.coords;
-
-          resolve({ lat: latitude, lon: longitude });
+          const { latitude: lat, longitude: lng } = position.coords;
+          resolve({ lat, lng });
         },
         (err) => {
           console.error("Error retrieving location:", err.message);
-
-          resolve({ lat: 44.34, lon: 10.99 });
+          resolve(null);
         }
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
-
-      resolve({ lat: 44.34, lon: 10.99 });
+      resolve(null);
     }
   });
 }

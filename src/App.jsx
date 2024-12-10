@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import getLocation from "./managers/getLocation";
 import getWeather from "./managers/getWeather";
 import ForecastSection from "./components/ForecastSection";
 import ChanceOfRain from "./components/ChanceOfRain";
 import Map from "./components/Map";
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // Global loading state
   const [location, setLocation] = useState([51.505, -0.09]);
   const [weatherData, setWeatherData] = useState(null);
 
@@ -34,19 +33,36 @@ function App() {
   }, [location]);
 
   return (
-    <>
+    <div className="container">
+      {/* Forecast Section */}
       {loading ? (
-        <p>Loading weather...</p>
+        <div className="forecast-section-loading">
+          <p>Loading Forecast...</p>
+        </div>
       ) : weatherData ? (
-        <div className="container">
-          <ForecastSection weatherData={weatherData} />
-          <ChanceOfRain chanceOfRain={weatherData.forecastWeather.list} />
-          <Map location={location} setLocation={setLocation} />
+        <ForecastSection weatherData={weatherData} setLocation={setLocation} />
+      ) : (
+        <p>Unable to load forecast data.</p>
+      )}
+
+      {loading ? (
+        <div className="chance-of-rain-loading">
+          <p>Loading Rain Chance...</p>
+        </div>
+      ) : weatherData ? (
+        <ChanceOfRain chanceOfRain={weatherData.forecastWeather.list} />
+      ) : (
+        <p>Unable to load rain data.</p>
+      )}
+
+      {loading ? (
+        <div className="map-loading">
+          <p>Loading Map...</p>
         </div>
       ) : (
-        <p>Unable to fetch weather data.</p>
+        <Map location={location} setLocation={setLocation} />
       )}
-    </>
+    </div>
   );
 }
 

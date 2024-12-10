@@ -33,7 +33,27 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.2rem;
+}
+
+.forecast-title,
+.allow-location-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.allow-location-btn {
+  gap: 12px;
+}
+
+#allow-location-img {
+  height: auto;
+  width: 24px;
+  padding: 6px;
+  background-color: #9dccf3;
+  border-radius: 16px;
+  cursor: pointer;
 }
 
 .forecast {
@@ -104,7 +124,8 @@ body {
   display: flex;
 }
 
-.chance-of-rain-section {
+.chance-of-rain-section,
+.map-section {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
