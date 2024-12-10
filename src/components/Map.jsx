@@ -7,14 +7,16 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useState } from "react";
+import Proptypes from "prop-types";
 
-const Map = () => {
-  const [markerPosition, setMarkerPosition] = useState([51.505, -0.09]);
+const Map = (props) => {
+  const [markerPosition, setMarkerPosition] = useState(props.location);
 
   const ClickHandler = () => {
     useMapEvent("click", (e) => {
       const { lat, lng } = e.latlng;
       setMarkerPosition([lat, lng]);
+      props.setLocation([lat, lng]);
     });
     return null;
   };
@@ -39,6 +41,11 @@ const Map = () => {
       </MapContainer>
     </div>
   );
+};
+
+Map.propTypes = {
+  location: Proptypes.array.isRequired,
+  setLocation: Proptypes.func.isRequired,
 };
 
 export default Map;

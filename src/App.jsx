@@ -7,12 +7,13 @@ import Map from "./components/Map";
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [location, setLocation] = useState([51.505, -0.09]);
   const [weatherData, setWeatherData] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchWeather = async () => {
       try {
-        const { lat, lon } = await getLocation();
+        const [lat, lon] = location;
         const weather = await getWeather(lat, lon);
         setWeatherData(weather);
       } catch (error) {
@@ -23,14 +24,14 @@ function App() {
       }
     };
 
-    fetchData();
+    fetchWeather();
 
     const interval = setInterval(() => {
-      fetchData();
+      fetchWeather();
     }, 1000 * 60 * 5);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [location]);
 
   return (
     <>
@@ -40,7 +41,7 @@ function App() {
         <div className="container">
           <ForecastSection weatherData={weatherData} />
           <ChanceOfRain chanceOfRain={weatherData.forecastWeather.list} />
-          <Map />
+          <Map location={location} setLocation={setLocation} />
         </div>
       ) : (
         <p>Unable to fetch weather data.</p>
