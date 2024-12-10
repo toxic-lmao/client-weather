@@ -1,67 +1,49 @@
-import { useEffect, useState } from "react";
-import getWeather from "./managers/getWeather";
+import { useState } from "react";
+import useWeather from "./hooks/useWeather";
 import ForecastSection from "./components/ForecastSection";
 import ChanceOfRain from "./components/ChanceOfRain";
 import Map from "./components/Map";
+import SkeletonScreen from "./components/SkeletonScreen";
 
 function App() {
-  const [loading, setLoading] = useState(true); // Global loading state
   const [location, setLocation] = useState([51.505, -0.09]);
-  const [weatherData, setWeatherData] = useState(null);
-
-  useEffect(() => {
-    const fetchWeather = async () => {
-      try {
-        const [lat, lon] = location;
-        const weather = await getWeather(lat, lon);
-        setWeatherData(weather);
-      } catch (error) {
-        console.error("Error fetching weather data:", error);
-        setWeatherData(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchWeather();
-
-    const interval = setInterval(() => {
-      fetchWeather();
-    }, 1000 * 60 * 5);
-
-    return () => clearInterval(interval);
-  }, [location]);
+  const { weatherData, loading } = useWeather(location);
 
   return (
     <div className="container">
       {/* Forecast Section */}
-      {loading ? (
-        <div className="forecast-section-loading">
-          <p>Loading Forecast...</p>
-        </div>
-      ) : weatherData ? (
-        <ForecastSection weatherData={weatherData} setLocation={setLocation} />
-      ) : (
-        <p>Unable to load forecast data.</p>
-      )}
+      <div className="forecast-section">
+        {loading ? (
+          <SkeletonScreen uiHeight={240} />
+        ) : weatherData ? (
+          <ForecastSection
+            weatherData={weatherData}
+            setLocation={setLocation}
+          />
+        ) : (
+          <p>Unable to load forecast data.</p>
+        )}
+      </div>
 
-      {loading ? (
-        <div className="chance-of-rain-loading">
-          <p>Loading Rain Chance...</p>
-        </div>
-      ) : weatherData ? (
-        <ChanceOfRain chanceOfRain={weatherData.forecastWeather.list} />
-      ) : (
-        <p>Unable to load rain data.</p>
-      )}
+      {/* Chance of Rain Section */}
+      <div className="chance-of-rain-section">
+        {loading ? (
+          <SkeletonScreen uiHeight={240} />
+        ) : weatherData ? (
+          <ChanceOfRain chanceOfRain={weatherData.forecastWeather.list} />
+        ) : (
+          <p>Unable to load rain data.</p>
+        )}
+      </div>
 
-      {loading ? (
-        <div className="map-loading">
-          <p>Loading Map...</p>
-        </div>
-      ) : (
-        <Map location={location} setLocation={setLocation} />
-      )}
+      {/* Map Section */}
+      <div className="map-section">
+        {loading ? (
+          <SkeletonScreen uiHeight={400} />
+        ) : (
+          <Map location={location} setLocation={setLocation} />
+        )}
+      </div>
     </div>
   );
 }
