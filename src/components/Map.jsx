@@ -10,9 +10,7 @@ import "leaflet/dist/leaflet.css";
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 
-const Map = (props) => {
-  const { location, setLocation } = props;
-
+export default function Map({ location, setLocation }) {
   const ClickHandler = () => {
     useMapEvent("click", (e) => {
       const { lat, lng } = e.latlng;
@@ -26,7 +24,7 @@ const Map = (props) => {
 
     useEffect(() => {
       if (location) {
-        map.flyTo(location, 15, { animate: true, duration: 1.5 });
+        map.flyTo(location, 14, { animate: true, duration: 1.5 });
       }
     }, [location, map]);
 
@@ -37,11 +35,7 @@ const Map = (props) => {
     <div className="map-section">
       <h1>Global Map</h1>
       <div className="map-container">
-        <MapContainer
-          center={location}
-          zoom={15}
-          style={{ width: "100%", height: "500px" }}
-        >
+        <MapContainer center={location} zoom={14} className="map-container">
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <ClickHandler />
           <LocationUpdater location={location} />
@@ -57,11 +51,9 @@ const Map = (props) => {
       </div>
     </div>
   );
-};
+}
 
 Map.propTypes = {
   location: PropTypes.array.isRequired,
   setLocation: PropTypes.func.isRequired,
 };
-
-export default Map;

@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import getWeather from "../managers/getWeather";
+import getWeather from "./getWeather";
 
-function useWeather(location) {
+export default function useWeather(location) {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -13,8 +14,7 @@ function useWeather(location) {
         const weather = await getWeather(lat, lon);
         setWeatherData(weather);
       } catch (error) {
-        console.error("Error fetching weather data:", error);
-        setWeatherData(null);
+        setError(error.message);
       } finally {
         setLoading(false);
       }
@@ -29,7 +29,5 @@ function useWeather(location) {
     return () => clearInterval(interval);
   }, [location]);
 
-  return { weatherData, loading };
+  return { weatherData, loading, error };
 }
-
-export default useWeather;

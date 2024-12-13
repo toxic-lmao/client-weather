@@ -20,7 +20,7 @@ ChartJS.register(
   LinearScale
 );
 
-const ChanceOfRain = (props) => {
+export default function ChanceOfRain(props) {
   const chartData = {
     labels: props.chanceOfRain.slice(0, 6).map((item) => item.dt),
     datasets: [
@@ -28,7 +28,7 @@ const ChanceOfRain = (props) => {
         data: props.chanceOfRain.slice(0, 6).map((item) => item.pop),
         backgroundColor: "#9dccf3",
         borderRadius: 5,
-        barPercentage: 0.2, // Adjust bar width for clarity
+        barPercentage: 0.2,
       },
     ],
   };
@@ -42,10 +42,9 @@ const ChanceOfRain = (props) => {
         intersect: false,
         backgroundColor: "#333",
         titleColor: "#fff",
-        // Tooltip can have custom content configuration based on your setup
       },
       legend: {
-        display: false, // Hide the legend completely
+        display: false,
       },
     },
     scales: {
@@ -103,10 +102,8 @@ const ChanceOfRain = (props) => {
       </div>
     </div>
   );
-};
+}
 
 ChanceOfRain.propTypes = {
   chanceOfRain: PropTypes.array.isRequired,
 };
-
-export default ChanceOfRain;

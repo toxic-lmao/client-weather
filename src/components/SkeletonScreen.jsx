@@ -2,17 +2,17 @@ import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-function SkeletonScreen({ uiHeight }) {
+export default function SkeletonScreen({ height }) {
   return (
     <div>
       <Skeleton
-        height={50}
+        height={55}
         width={"100%"}
         baseColor="#2C2F38"
         highlightColor="#3A3D47"
       />
       <Skeleton
-        height={uiHeight}
+        height={height}
         width={"100%"}
         baseColor="#2C2F38"
         highlightColor="#3A3D47"
@@ -22,7 +22,5 @@ function SkeletonScreen({ uiHeight }) {
 }
 
 SkeletonScreen.propTypes = {
-  uiHeight: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
 };
-
-export default SkeletonScreen;
