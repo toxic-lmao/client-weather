@@ -32,12 +32,12 @@ export default function Map({ location, setLocation }) {
   };
 
   return (
-    <div className="flex flex-col justify-between gap-5">
+    <div className="flex flex-col justify-between gap-4">
       <Title name="Global Map" />
       <MapContainer
         center={location}
         zoom={14}
-        className="h-[500px] w-full rounded-xl overflow-hidden"
+        className="h-[30rem] w-full rounded-xl"
         attributionControl={false}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />

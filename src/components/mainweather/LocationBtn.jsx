@@ -16,7 +16,7 @@ export default function LocationBtn({ setLocation }) {
       <img
         src={locationbtn}
         alt="Location Button"
-        className="w-9 p-1.5 bg-[#9dccf3] rounded-2xl cursor-pointer"
+        className="w-8 p-1.5 bg-[#9dccf3] rounded-full cursor-pointer"
         onClick={userLocation}
       />
     </div>

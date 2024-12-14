@@ -19,19 +19,19 @@ export default function App() {
       ) : (
         <div className="grid grid-cols-[2fr_1fr] gap-10 rounded-xl">
           {loading ? (
-            <SkeletonScreen height={240} />
+            <SkeletonScreen height="16rem" />
           ) : weatherData ? (
             <MainWeather weatherData={weatherData} setLocation={setLocation} />
           ) : null}
 
           {loading ? (
-            <SkeletonScreen height={240} />
+            <SkeletonScreen height="16rem" />
           ) : weatherData ? (
             <ChanceOfRain chanceOfRain={weatherData.forecastWeather.list} />
           ) : null}
 
           {!weatherData ? (
-            <SkeletonScreen height={500} />
+            <SkeletonScreen height="30rem" />
           ) : (
             <Map location={location} setLocation={setLocation} />
           )}

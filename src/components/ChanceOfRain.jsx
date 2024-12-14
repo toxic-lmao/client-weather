@@ -10,7 +10,6 @@ import {
 } from "chart.js";
 import Title from "./Title";
 
-// Register Chart.js components
 ChartJS.register(
   ChartTitle,
   Tooltip,
@@ -95,7 +94,7 @@ export default function ChanceOfRain(props) {
   };
 
   return (
-    <div className="flex flex-col justify-between gap-5">
+    <div className="flex flex-col justify-between gap-4">
       <Title name="Chance of Rain" />
       <div className="w-[103%] h-full min-h-max ml-[-16px]">
         <Bar data={chartData} options={chartOptions} />
