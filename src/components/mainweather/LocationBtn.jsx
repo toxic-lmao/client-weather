@@ -1,34 +1,24 @@
-import PropTypes from "prop-types";
-import { useState } from "react";
 import getLocation from "../../libs/getLocation";
 import locationbtn from "../../assets/images/location-btn.png";
 
 export default function LocationBtn({ setLocation }) {
-  const [locationAllowed, setLocationAllowed] = useState(false);
-
   async function userLocation() {
     try {
       const { lat, lng } = await getLocation();
       setLocation([lat, lng]);
-      setLocationAllowed(true);
     } catch (error) {
       console.log(error);
-      setLocationAllowed(false);
     }
   }
 
   return (
-    <div className="allow-location-btn">
+    <div className="flex gap-3 items-center justify-between">
       <img
         src={locationbtn}
         alt="Location Button"
-        id="allow-location-img"
+        className="w-9 p-1.5 bg-[#9dccf3] rounded-2xl cursor-pointer"
         onClick={userLocation}
       />
     </div>
   );
 }
-
-LocationBtn.propTypes = {
-  setLocation: PropTypes.func.isRequired,
-};

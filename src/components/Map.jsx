@@ -8,7 +8,7 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useEffect } from "react";
-import PropTypes from "prop-types";
+import Title from "./Title";
 
 export default function Map({ location, setLocation }) {
   const ClickHandler = () => {
@@ -32,28 +32,26 @@ export default function Map({ location, setLocation }) {
   };
 
   return (
-    <div className="map-section">
-      <h1>Global Map</h1>
-      <div className="map-container">
-        <MapContainer center={location} zoom={14} className="map-container">
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          <ClickHandler />
-          <LocationUpdater location={location} />
-          {location && (
-            <Marker position={location}>
-              <Tooltip>
-                Latitude: {location[0]} <br />
-                Longitude: {location[1]}
-              </Tooltip>
-            </Marker>
-          )}
-        </MapContainer>
-      </div>
+    <div className="flex flex-col justify-between gap-5">
+      <Title name="Global Map" />
+      <MapContainer
+        center={location}
+        zoom={14}
+        className="h-[500px] w-full rounded-xl overflow-hidden"
+        attributionControl={false}
+      >
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <ClickHandler />
+        <LocationUpdater location={location} />
+        {location && (
+          <Marker position={location}>
+            <Tooltip>
+              Latitude: {location[0]} <br />
+              Longitude: {location[1]}
+            </Tooltip>
+          </Marker>
+        )}
+      </MapContainer>
     </div>
   );
 }
-
-Map.propTypes = {
-  location: PropTypes.array.isRequired,
-  setLocation: PropTypes.func.isRequired,
-};

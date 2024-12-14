@@ -1,26 +1,20 @@
 import LocationBtn from "./LocationBtn";
 import Current from "./Current";
 import Forecast from "./Forecast";
-import PropTypes from "prop-types";
+import Title from "../Title";
 
 export default function MainWeather({ weatherData, setLocation }) {
   const { currentWeather, forecastWeather } = weatherData;
 
   return (
-    <div className="main-weather">
-      <div className="forecast-title">
-        <h1>Forecast</h1>
+    <div className="flex flex-col justify-between gap-4">
+      <Title name="Forecast">
         <LocationBtn setLocation={setLocation} />
-      </div>
-      <div className="forecast">
+      </Title>
+      <div className="grid grid-cols-[2fr_repeat(6,_1fr)] grid-rows-1 gap-3 justify-items-stretch">
         <Current current={currentWeather} />
         <Forecast forecast={forecastWeather} />
       </div>
     </div>
   );
 }
-
-MainWeather.propTypes = {
-  weatherData: PropTypes.object.isRequired,
-  setLocation: PropTypes.func.isRequired,
-};

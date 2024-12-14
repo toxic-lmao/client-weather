@@ -4,6 +4,7 @@ import MainWeather from "./components/mainweather/MainWeather";
 import ChanceOfRain from "./components/ChanceOfRain";
 import Map from "./components/Map";
 import SkeletonScreen from "./components/SkeletonScreen";
+import Title from "./components/Title";
 
 const initialLocation = [51.505, -0.09];
 
@@ -14,9 +15,9 @@ export default function App() {
   return (
     <>
       {error ? (
-        <p>{error}</p>
+        <Title name={error} />
       ) : (
-        <div className="container">
+        <div className="grid grid-cols-[2fr_1fr] gap-10 rounded-xl">
           {loading ? (
             <SkeletonScreen height={240} />
           ) : weatherData ? (

@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import ForecastDay from "./ForecastCard";
 
 export default function Forecast({ forecast }) {
@@ -18,7 +17,3 @@ export default function Forecast({ forecast }) {
     </>
   );
 }
-
-Forecast.propTypes = {
-  forecast: PropTypes.object.isRequired,
-};

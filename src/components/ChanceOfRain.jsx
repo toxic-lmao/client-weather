@@ -1,18 +1,18 @@
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
-  Title,
+  Title as ChartTitle,
   Tooltip,
   Legend,
   BarElement,
   CategoryScale,
   LinearScale,
 } from "chart.js";
-import PropTypes from "prop-types";
+import Title from "./Title";
 
 // Register Chart.js components
 ChartJS.register(
-  Title,
+  ChartTitle,
   Tooltip,
   Legend,
   BarElement,
@@ -95,15 +95,11 @@ export default function ChanceOfRain(props) {
   };
 
   return (
-    <div className="chance-of-rain-section">
-      <h1>Chance of rain</h1>
-      <div className="chance-of-rain">
+    <div className="flex flex-col justify-between gap-5">
+      <Title name="Chance of Rain" />
+      <div className="w-[103%] h-full min-h-max ml-[-16px]">
         <Bar data={chartData} options={chartOptions} />
       </div>
     </div>
   );
 }
-
-ChanceOfRain.propTypes = {
-  chanceOfRain: PropTypes.array.isRequired,
-};
