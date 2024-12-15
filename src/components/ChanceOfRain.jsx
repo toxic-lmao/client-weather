@@ -1,103 +1,97 @@
-import { Bar } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  Title as ChartTitle,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-} from "chart.js";
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
 import Title from "./Title";
 
-ChartJS.register(
-  ChartTitle,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale
-);
-
 export default function ChanceOfRain(props) {
-  const chartData = {
-    labels: props.chanceOfRain.slice(0, 6).map((item) => item.dt),
-    datasets: [
-      {
-        data: props.chanceOfRain.slice(0, 6).map((item) => item.pop),
-        backgroundColor: "#9dccf3",
-        borderRadius: 5,
-        barPercentage: 0.2,
-      },
-    ],
-  };
+  const chartData = props.chanceOfRain.slice(0, 6).map((item) => ({
+    name: item.dt,
+    y: item.pop * 100,
+  }));
 
   const chartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      tooltip: {
-        mode: "index",
-        intersect: false,
-        backgroundColor: "#333",
-        titleColor: "#fff",
-      },
-      legend: {
-        display: false,
-      },
+    chart: {
+      type: "column",
+      backgroundColor: "transparent",
+      height: "273",
     },
-    scales: {
-      x: {
-        grid: {
-          display: false,
-        },
-        ticks: {
+    title: {
+      text: null,
+    },
+    credits: {
+      enabled: false,
+    },
+    legend: { enabled: false },
+    xAxis: {
+      categories: props.chanceOfRain.slice(0, 6).map((item) => item.dt),
+      labels: {
+        style: {
           color: "#fff",
-          font: {
-            size: 14,
-            family: "DM Sans",
-          },
-          padding: 8,
-        },
-      },
-      y: {
-        grid: {
-          color: "rgba(255, 255, 255, 0.2)",
-        },
-        ticks: {
-          color: "#fff",
-          font: {
-            size: 14,
-            family: "DM Sans",
-          },
-          padding: 16,
-          stepSize: 0.1,
-          min: 0,
-          max: 1,
-          callback: function (value) {
-            if (value === 0.0) return "0%";
-            if (value === 0.1) return "10%";
-            if (value === 0.2) return "20%";
-            if (value === 0.3) return "30%";
-            if (value === 0.4) return "40%";
-            if (value === 0.5) return "50%";
-            if (value === 0.6) return "60%";
-            if (value === 0.7) return "70%";
-            if (value === 0.8) return "80%";
-            if (value === 0.9) return "90%";
-            if (value === 1.0) return "100%";
-            return "";
-          },
+          fontFamily: "DM Sans",
+          fontSize: "14px",
         },
       },
     },
+    yAxis: {
+      min: 0,
+      max: 100,
+      title: { enabled: false },
+      labels: {
+        style: {
+          color: "#fff",
+          fontFamily: "DM Sans",
+          fontSize: "14px",
+        },
+        formatter: function () {
+          if (this.value === 0) return "Clear";
+          if (this.value === 25) return "Cloudy";
+          if (this.value === 50) return "Overcast";
+          if (this.value === 75) return "Showers";
+          if (this.value === 100) return "Stormy";
+          return `${this.value}%`;
+        },
+      },
+      gridLineDashStyle: "LongDash",
+    },
+    tooltip: {
+      backgroundColor: "#333",
+      style: {
+        fontFamily: "DM Sans",
+        fontSize: "16px",
+        color: "#fff",
+      },
+      pointFormat: "{point.y}%",
+    },
+    plotOptions: {
+      column: {
+        pointWidth: 20,
+        borderWidth: 0,
+        borderRadius: 16,
+        dataLabels: {
+          enabled: true,
+          format: "{point.y}%",
+          style: {
+            color: "#fff",
+            fontFamily: "DM Sans",
+            fontSize: "14px",
+            opacity: 0.8,
+          },
+        },
+      },
+    },
+    series: [
+      {
+        name: "Chance of Rain",
+        data: chartData,
+        color: "#9dccf3",
+      },
+    ],
   };
 
   return (
     <div className="flex flex-col justify-between gap-4">
       <Title name="Chance of Rain" />
-      <div className="w-[103%] h-full min-h-max ml-[-16px]">
-        <Bar data={chartData} options={chartOptions} />
+      <div className="ml-[-10px] mr-[-10px] mb-[-16px]">
+        <HighchartsReact highcharts={Highcharts} options={chartOptions} />
       </div>
     </div>
   );

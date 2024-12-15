@@ -24,11 +24,11 @@ export default function App() {
             <MainWeather weatherData={weatherData} setLocation={setLocation} />
           ) : null}
 
-          {loading ? (
+          {!weatherData ? (
             <SkeletonScreen height="16rem" />
-          ) : weatherData ? (
+          ) : (
             <ChanceOfRain chanceOfRain={weatherData.forecastWeather.list} />
-          ) : null}
+          )}
 
           {!weatherData ? (
             <SkeletonScreen height="30rem" />
