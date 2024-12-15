@@ -39,6 +39,13 @@ export default function Map({ location, setLocation }) {
         zoom={14}
         className="h-[30rem] w-full rounded-xl"
         attributionControl={false}
+        minZoom={3} // Prevent zooming out beyond level 3 (adjust as needed)
+        maxZoom={18} // Set the maximum zoom level (adjust as needed)
+        worldCopyJump={true} // Enable the wrapping of longitude
+        maxBounds={[
+          [-90, -180], // South-West corner of the map (latitude, longitude)
+          [90, 180], // North-East corner of the map (latitude, longitude)
+        ]}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <ClickHandler />

@@ -2,8 +2,8 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import Title from "./Title";
 
-export default function ChanceOfRain(props) {
-  const chartData = props.chanceOfRain.slice(0, 6).map((item) => ({
+export default function ChanceOfRain({ chanceOfRain }) {
+  const chartData = chanceOfRain.slice(0, 6).map((item) => ({
     name: item.dt,
     y: item.pop * 100,
   }));
@@ -21,8 +21,11 @@ export default function ChanceOfRain(props) {
       enabled: false,
     },
     legend: { enabled: false },
+    accessibility: {
+      enabled: false,
+    },
     xAxis: {
-      categories: props.chanceOfRain.slice(0, 6).map((item) => item.dt),
+      categories: chanceOfRain.slice(0, 6).map((item) => item.dt),
       labels: {
         style: {
           color: "#fff",
