@@ -3,20 +3,16 @@ import getWeather from "./getWeather";
 
 export default function useWeather(location) {
   const [weatherData, setWeatherData] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        setLoading(true);
         const [lat, lon] = location;
         const weather = await getWeather(lat, lon);
         setWeatherData(weather);
       } catch (error) {
         setError(error.message);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -29,5 +25,5 @@ export default function useWeather(location) {
     return () => clearInterval(interval);
   }, [location]);
 
-  return { weatherData, loading, error };
+  return { weatherData, error };
 }
