@@ -2,8 +2,9 @@ import LocationBtn from "./LocationBtn";
 import Current from "./Current";
 import Forecast from "./Forecast";
 import Title from "../Title";
+import { memo } from "react";
 
-export default function MainWeather({ weatherData, setLocation }) {
+export default memo(function MainWeather({ weatherData, setLocation }) {
   const { currentWeather, forecastWeather } = weatherData;
 
   return (
@@ -17,4 +18,4 @@ export default function MainWeather({ weatherData, setLocation }) {
       </div>
     </div>
   );
-}
+});

@@ -1,8 +1,9 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import Title from "./Title";
+import { memo } from "react";
 
-export default function ChanceOfRain({ chanceOfRain }) {
+export default memo(function ChanceOfRain({ chanceOfRain }) {
   const chartData = chanceOfRain.slice(0, 6).map((item) => ({
     name: item.dt,
     y: item.pop * 100,
@@ -98,4 +99,4 @@ export default function ChanceOfRain({ chanceOfRain }) {
       </div>
     </div>
   );
-}
+});
