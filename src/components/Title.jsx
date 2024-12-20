@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const Title = ({ name, children }) => {
   return (
     <div className="flex items-center justify-between">
@@ -5,4 +7,9 @@ export const Title = ({ name, children }) => {
       {children}
     </div>
   );
+};
+
+Title.propTypes = {
+  name: PropTypes.string.isRequired,
+  children: PropTypes.node,
 };

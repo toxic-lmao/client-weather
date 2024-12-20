@@ -2,8 +2,9 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { Title } from "./Title";
 import { memo } from "react";
+import PropTypes from "prop-types";
 
-export default memo(function ChanceOfRain({ chanceOfRain }) {
+function ChanceOfRain({ chanceOfRain }) {
   const chartData = chanceOfRain.slice(0, 6).map((item) => ({
     name: item.dt,
     y: item.pop * 100,
@@ -99,4 +100,10 @@ export default memo(function ChanceOfRain({ chanceOfRain }) {
       </div>
     </div>
   );
-});
+}
+
+ChanceOfRain.propTypes = {
+  chanceOfRain: PropTypes.array.isRequired,
+};
+
+export default memo(ChanceOfRain);

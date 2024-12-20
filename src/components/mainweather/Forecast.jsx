@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const ForecastCard = ({ weather }) => {
   const baseUrl = "https://openweathermap.org/img/wn/imgname@2x.png";
   const imgUrl = baseUrl.replace("imgname", weather.icon);
@@ -30,4 +32,12 @@ export const Forecast = ({ forecast }) => {
       ))}
     </>
   );
+};
+
+Forecast.propTypes = {
+  forecast: PropTypes.object.isRequired,
+};
+
+ForecastCard.propTypes = {
+  weather: PropTypes.object.isRequired,
 };

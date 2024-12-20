@@ -1,5 +1,6 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import PropTypes from "prop-types";
 
 export const SkeletonScreen = ({ height }) => {
   return (
@@ -18,4 +19,8 @@ export const SkeletonScreen = ({ height }) => {
       />
     </div>
   );
+};
+
+SkeletonScreen.propTypes = {
+  height: PropTypes.string.isRequired,
 };

@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const Current = ({ current }) => {
   if (!current || !current.weather) {
     return <div>No current weather data available</div>;
@@ -27,4 +29,8 @@ export const Current = ({ current }) => {
       </div>
     </div>
   );
+};
+
+Current.propTypes = {
+  current: PropTypes.object.isRequired,
 };

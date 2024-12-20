@@ -3,8 +3,9 @@ import { Current } from "./Current";
 import { Forecast } from "./Forecast";
 import { Title } from "../Title";
 import { memo } from "react";
+import PropTypes from "prop-types";
 
-export default memo(function MainWeather({ weatherData, setLocation }) {
+function MainWeather({ weatherData, setLocation }) {
   const { currentWeather, forecastWeather } = weatherData;
 
   return (
@@ -18,4 +19,11 @@ export default memo(function MainWeather({ weatherData, setLocation }) {
       </div>
     </div>
   );
-});
+}
+
+MainWeather.propTypes = {
+  weatherData: PropTypes.object.isRequired,
+  setLocation: PropTypes.func.isRequired,
+};
+
+export default memo(MainWeather);

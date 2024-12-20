@@ -1,5 +1,6 @@
 import { getLocation } from "../../libs/getLocation";
 import locationbtn from "../../assets/images/location-btn.png";
+import PropTypes from "prop-types";
 
 export const LocationBtn = ({ setLocation }) => {
   async function userLocation() {
@@ -24,4 +25,8 @@ export const LocationBtn = ({ setLocation }) => {
       />
     </div>
   );
+};
+
+LocationBtn.propTypes = {
+  setLocation: PropTypes.func.isRequired,
 };

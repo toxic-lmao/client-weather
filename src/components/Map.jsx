@@ -9,6 +9,7 @@ import {
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 import { Title } from "./Title";
 import customMarker from "../assets/images/marker.png";
 
@@ -71,3 +72,8 @@ export default function Map({ location, setLocation }) {
     </div>
   );
 }
+
+Map.propTypes = {
+  location: PropTypes.array.isRequired,
+  setLocation: PropTypes.func.isRequired,
+};
