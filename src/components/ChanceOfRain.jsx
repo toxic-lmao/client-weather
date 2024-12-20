@@ -5,16 +5,46 @@ import { memo } from "react";
 import PropTypes from "prop-types";
 
 function ChanceOfRain({ chanceOfRain }) {
-  const chartData = chanceOfRain.slice(0, 6).map((item) => ({
-    name: item.dt,
-    y: item.pop * 100,
-  }));
-
   const chartOptions = {
     chart: {
       type: "column",
       backgroundColor: "transparent",
-      height: "273",
+      height: 250,
+    },
+    responsive: {
+      rules: [
+        {
+          condition: { minWidth: 500 },
+          chartOptions: {
+            chart: { height: 283 },
+            xAxis: {
+              categories: chanceOfRain.slice(0, 6).map((item) => item.dt),
+              labels: {
+                style: {
+                  fontSize: "14px",
+                },
+              },
+            },
+            yAxis: {
+              labels: {
+                style: {
+                  fontSize: "14px",
+                },
+              },
+            },
+            series: [
+              {
+                name: "Chance of Rain",
+                data: chanceOfRain.slice(0, 6).map((item) => ({
+                  name: item.dt,
+                  y: item.pop * 100,
+                })),
+                color: "#9dccf3",
+              },
+            ],
+          },
+        },
+      ],
     },
     title: {
       text: null,
@@ -32,7 +62,7 @@ function ChanceOfRain({ chanceOfRain }) {
         style: {
           color: "#fff",
           fontFamily: "DM Sans",
-          fontSize: "14px",
+          fontSize: "12px",
         },
       },
     },
@@ -44,12 +74,12 @@ function ChanceOfRain({ chanceOfRain }) {
         style: {
           color: "#fff",
           fontFamily: "DM Sans",
-          fontSize: "14px",
+          fontSize: "12px",
         },
         formatter: function () {
           if (this.value === 0) return "Clear";
           if (this.value === 25) return "Cloudy";
-          if (this.value === 50) return "Overcast";
+          if (this.value === 50) return "Sunny";
           if (this.value === 75) return "Showers";
           if (this.value === 100) return "Stormy";
           return `${this.value}%`;
@@ -85,9 +115,10 @@ function ChanceOfRain({ chanceOfRain }) {
     },
     series: [
       {
-        name: "Chance of Rain",
-        data: chartData,
-        color: "#9dccf3",
+        data: chanceOfRain.slice(0, 4).map((item) => ({
+          name: item.dt,
+          y: item.pop * 100,
+        })),
       },
     ],
   };

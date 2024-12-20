@@ -13,7 +13,7 @@ function MainWeather({ weatherData, setLocation }) {
       <Title name="Forecast">
         <LocationBtn setLocation={setLocation} />
       </Title>
-      <div className="grid grid-cols-[2fr_repeat(6,_1fr)] grid-rows-1 gap-3 justify-items-stretch">
+      <div className="grid grid-cols-3 sm:grid sm:grid-cols-[2fr_repeat(6,_1fr)] sm:grid-rows-1 gap-3 justify-items-stretch">
         <Current current={currentWeather} />
         <Forecast forecast={forecastWeather} />
       </div>
