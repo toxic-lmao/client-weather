@@ -7,7 +7,13 @@ const MainWeather = lazy(() => import("./components/mainweather/MainWeather"));
 const ChanceOfRain = lazy(() => import("./components/ChanceOfRain"));
 const Map = lazy(() => import("./components/Map"));
 
-const initialLocation = [51.505, -0.09];
+let initialLocation;
+if (localStorage.getItem("location")) {
+  const { lat, lng } = JSON.parse(localStorage.getItem("location"));
+  initialLocation = [lat, lng];
+} else {
+  initialLocation = [51.505, -0.09];
+}
 
 export default function App() {
   const [location, setLocation] = useState(initialLocation);

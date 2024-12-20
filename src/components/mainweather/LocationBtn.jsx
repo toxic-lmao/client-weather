@@ -6,6 +6,9 @@ export default function LocationBtn({ setLocation }) {
     try {
       const { lat, lng } = await getLocation();
       setLocation([lat, lng]);
+      if (localStorage.getItem("location") !== JSON.stringify({ lat, lng })) {
+        localStorage.setItem("location", JSON.stringify({ lat, lng }));
+      }
     } catch (error) {
       console.log(error);
     }
