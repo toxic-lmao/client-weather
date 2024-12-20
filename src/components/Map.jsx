@@ -47,7 +47,7 @@ export default function Map({ location, setLocation }) {
       <MapContainer
         center={location}
         zoom={14}
-        className="h-96 w-full rounded-xl"
+        className="h-96 w-full rounded-xl md:h-[32rem]"
         attributionControl={false}
         minZoom={3}
         maxZoom={18}

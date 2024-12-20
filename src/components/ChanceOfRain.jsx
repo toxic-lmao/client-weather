@@ -34,12 +34,10 @@ function ChanceOfRain({ chanceOfRain }) {
             },
             series: [
               {
-                name: "Chance of Rain",
                 data: chanceOfRain.slice(0, 6).map((item) => ({
                   name: item.dt,
                   y: item.pop * 100,
                 })),
-                color: "#9dccf3",
               },
             ],
           },
@@ -97,7 +95,16 @@ function ChanceOfRain({ chanceOfRain }) {
       pointFormat: "{point.y}%",
     },
     plotOptions: {
+      series: {
+        animation: {
+          duration: 1000,
+          enableMouseTracking: true,
+        },
+      },
       column: {
+        animation: {
+          duration: 0,
+        },
         pointWidth: 20,
         borderWidth: 0,
         borderRadius: 16,
@@ -115,9 +122,11 @@ function ChanceOfRain({ chanceOfRain }) {
     },
     series: [
       {
+        name: "Chance of Rain",
         data: chanceOfRain.slice(0, 4).map((item) => ({
           name: item.dt,
           y: item.pop * 100,
+          color: "#9dccf3",
         })),
       },
     ],

@@ -24,7 +24,7 @@ export default function App() {
       {error ? (
         <Title name={error} />
       ) : (
-        <div className="flex flex-col gap-10 rounded-xl sm:grid sm:grid-cols-[2fr_1fr]">
+        <div className="flex flex-col gap-10 rounded-xl xl:grid xl:grid-cols-[2fr_1fr]">
           <Suspense fallback={<SkeletonScreen height="16rem" />}>
             {weatherData && (
               <MainWeather
