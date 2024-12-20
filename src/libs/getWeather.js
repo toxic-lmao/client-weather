@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function getWeather(latitude, longitude) {
+export const getWeather = async (latitude, longitude) => {
   try {
     const response = await axios.post(
       import.meta.env.VITE_API_URL,
@@ -15,4 +15,4 @@ export default async function getWeather(latitude, longitude) {
     console.error("Error fetching weather data:", error.message);
     throw new Error("Unable to fetch weather data. Please try again later.");
   }
-}
+};

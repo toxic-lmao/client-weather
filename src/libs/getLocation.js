@@ -1,4 +1,4 @@
-export default function getLocation() {
+export const getLocation = () => {
   return new Promise((resolve, reject) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -12,4 +12,4 @@ export default function getLocation() {
       reject(new Error("Geolocation is not supported by this browser."));
     }
   });
-}
+};

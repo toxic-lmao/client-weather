@@ -1,4 +1,4 @@
-export default function Current({ current }) {
+export const Current = ({ current }) => {
   if (!current || !current.weather) {
     return <div>No current weather data available</div>;
   }
@@ -27,4 +27,4 @@ export default function Current({ current }) {
       </div>
     </div>
   );
-}
+};

@@ -1,7 +1,7 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-export default function SkeletonScreen({ height }) {
+export const SkeletonScreen = ({ height }) => {
   return (
     <div className="flex flex-col gap-3 mt-[-3px]">
       <Skeleton
@@ -18,4 +18,4 @@ export default function SkeletonScreen({ height }) {
       />
     </div>
   );
-}
+};

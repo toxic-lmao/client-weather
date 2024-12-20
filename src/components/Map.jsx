@@ -9,7 +9,7 @@ import {
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useEffect } from "react";
-import Title from "./Title";
+import { Title } from "./Title";
 import customMarker from "../assets/images/marker.png";
 
 export default function Map({ location, setLocation }) {

@@ -1,6 +1,6 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import Title from "./Title";
+import { Title } from "./Title";
 import { memo } from "react";
 
 export default memo(function ChanceOfRain({ chanceOfRain }) {

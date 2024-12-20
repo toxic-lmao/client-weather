@@ -1,7 +1,7 @@
-import getLocation from "../../libs/getLocation";
+import { getLocation } from "../../libs/getLocation";
 import locationbtn from "../../assets/images/location-btn.png";
 
-export default function LocationBtn({ setLocation }) {
+export const LocationBtn = ({ setLocation }) => {
   async function userLocation() {
     try {
       const { lat, lng } = await getLocation();
@@ -24,4 +24,4 @@ export default function LocationBtn({ setLocation }) {
       />
     </div>
   );
-}
+};

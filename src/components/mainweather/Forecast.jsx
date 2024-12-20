@@ -1,4 +1,4 @@
-function ForecastCard({ weather }) {
+export const ForecastCard = ({ weather }) => {
   const baseUrl = "https://openweathermap.org/img/wn/imgname@2x.png";
   const imgUrl = baseUrl.replace("imgname", weather.icon);
 
@@ -12,9 +12,9 @@ function ForecastCard({ weather }) {
       <h4 className="text-base">{weather.description}</h4>
     </div>
   );
-}
+};
 
-export default function Forecast({ forecast }) {
+export const Forecast = ({ forecast }) => {
   return (
     <>
       {forecast.list.slice(0, 6).map((entry, index) => (
@@ -30,4 +30,4 @@ export default function Forecast({ forecast }) {
       ))}
     </>
   );
-}
+};

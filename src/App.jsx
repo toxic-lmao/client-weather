@@ -1,7 +1,7 @@
 import { useState, Suspense, lazy } from "react";
-import useWeather from "./libs/useWeather";
-import SkeletonScreen from "./components/SkeletonScreen";
-import Title from "./components/Title";
+import { useWeather } from "./libs/useWeather";
+import { SkeletonScreen } from "./components/SkeletonScreen";
+import { Title } from "./components/Title";
 
 const MainWeather = lazy(() => import("./components/mainweather/MainWeather"));
 const ChanceOfRain = lazy(() => import("./components/ChanceOfRain"));

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
-import getWeather from "./getWeather";
+import { getWeather } from "./getWeather";
 
-export default function useWeather(location) {
+export const useWeather = (location) => {
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState(null);
 
@@ -27,4 +27,4 @@ export default function useWeather(location) {
   }, [fetchWeather]);
 
   return { weatherData, error };
-}
+};

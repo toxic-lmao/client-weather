@@ -1,7 +1,7 @@
-import LocationBtn from "./LocationBtn";
-import Current from "./Current";
-import Forecast from "./Forecast";
-import Title from "../Title";
+import { LocationBtn } from "./LocationBtn";
+import { Current } from "./Current";
+import { Forecast } from "./Forecast";
+import { Title } from "../Title";
 import { memo } from "react";
 
 export default memo(function MainWeather({ weatherData, setLocation }) {
